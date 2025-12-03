@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "telegram_id": 123456789,
+      "telegram_username": "john_dev",
+      "first_and_last_name": "John Doe",
+      "about": "Python разработчик, 5 лет опыта",
+      "role": "speaker",
+      "networking_profile_filled": true
+    },
+    {
+      "id": "user2",
+      "telegram_id": 987654321,
+      "telegram_username": "jane_frontend",
+      "first_and_last_name": "Jane Smith",
+      "about": "Frontend специалист, React",
+      "role": "speaker",
+      "networking_profile_filled": true
+    },
+    {
+      "id": "user3",
+      "telegram_id": 555555555,
+      "telegram_username": "alex_devops",
+      "first_and_last_name": "Alex Johnson",
+      "about": "DevOps engineer, Kubernetes",
+      "role": "speaker",
+      "networking_profile_filled": true
+    },
+    {
+      "id": "user4",
+      "telegram_id": 111111111,
+      "telegram_username": "mike_guest",
+      "first_and_last_name": "Mike Wilson",
+      "about": "Junior разработчик",
+      "role": "guest",
+      "networking_profile_filled": false
+    }
+  ],
+  "events": [
+    {
+      "id": "event1",
+      "title": "Python Meetup December",
+      "description": "Встреча для разработчиков на Python. Обсудим новые версии, best practices и практические применения",
+      "date": "2025-12-15T19:00:00",
+      "location": "Tech Hub, Almaty",
+      "is_active": true
+    },
+    {
+      "id": "event2",
+      "title": "Frontend Workshop 2025",
+      "description": "Интерактивный воркшоп по современному фронтенду. React, Next.js, TypeScript",
+      "date": "2025-12-20T18:30:00",
+      "location": "Digital Space, Astana",
+      "is_active": true
+    }
+  ],
+  "schedules": [
+    {
+      "event_id": "event1",
+      "speaker_id": "user1",
+      "title": "FastAPI: Building Modern APIs",
+      "description": "Полный гайд по FastAPI фреймворку, async/await, валидация данных",
+      "start_time": "19:00",
+      "end_time": "19:45",
+      "order": 1
+    },
+    {
+      "event_id": "event1",
+      "speaker_id": "user3",
+      "title": "Django Best Practices 2025",
+      "description": "Лучшие практики при разработке на Django, оптимизация, тестирование",
+      "start_time": "20:00",
+      "end_time": "20:45",
+      "order": 2
+    },
+    {
+      "event_id": "event2",
+      "speaker_id": "user2",
+      "title": "React Hooks Deep Dive",
+      "description": "Понимание продвинутых React хуков, custom hooks, optimization",
+      "start_time": "18:30",
+      "end_time": "19:15",
+      "order": 1
+    },
+    {
+      "event_id": "event2",
+      "speaker_id": "user1",
+      "title": "TypeScript для фронтендеров",
+      "description": "Как правильно использовать TypeScript в React приложениях",
+      "start_time": "19:30",
+      "end_time": "20:15",
+      "order": 2
+    }
+  ]
+}
