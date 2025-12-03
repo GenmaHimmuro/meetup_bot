@@ -105,3 +105,69 @@ async def get_event_manage_keyboard(event_id):
         ],
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+
+async def get_networking_match_keyboard():
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text="◀ В меню", 
+                callback_data="back_to_menu")
+        ],
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+
+async def get_networking_keyboard():
+    buttons = [
+        [
+             InlineKeyboardButton(
+                 text="➡️ Следующий", 
+                 callback_data="show_next_profile"
+                 ),
+        ],
+        [
+            InlineKeyboardButton(
+                text="◀ В меню", 
+                callback_data="back_to_menu"
+                )
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+
+async def get_networking_match_keyboard(profile_id=None):
+    if profile_id:
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="✅ Добавить контакт",
+                    callback_data=f"match_accept:{profile_id}"
+                ),
+                InlineKeyboardButton(
+                    text="❌ Пропустить",
+                    callback_data=f"match_skip:{profile_id}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="◀ В меню",
+                    callback_data="back_to_menu"
+                )
+            ]
+        ])
+    else:
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="➡️ Следующий контакт",
+                    callback_data="show_next_profile"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="◀ В меню",
+                    callback_data="back_to_menu"
+                )
+            ]
+        ])

@@ -41,6 +41,11 @@ class DatabaseHandler:
     @sync_to_async
     def get_user_by_telegram_id(telegram_id):
         return User.objects.filter(telegram_id=telegram_id).first()
+    
+    @staticmethod
+    @sync_to_async
+    def get_user_by_id(user_id: int):
+        return User.objects.filter(id=user_id).first()
 
     @staticmethod
     @sync_to_async
@@ -64,9 +69,8 @@ class DatabaseHandler:
 
     @staticmethod
     @sync_to_async
-    def get_event_by_id():
-        event = Event.objects.filter(is_active=True).first()
-        return event
+    def get_event_by_id(event_id):
+        return Event.objects.filter(id=event_id).first()
 
     @staticmethod
     @sync_to_async
@@ -308,20 +312,6 @@ class DatabaseHandler:
 
     @staticmethod
     @sync_to_async
-    def get_next_profile_for_matching(user_id, event_id):
-        viewed_matches = MatchHistory.objects.filter(
-            event_id=event_id,
-            initiator_id=user_id
-        ).values_list('target_id', flat=True)
-        
-        next_profile = NetworkingProfile.objects.filter(
-            event_id=event_id
-        ).exclude(user_id=user_id).exclude(user_id__in=viewed_matches).first()
-        
-        return next_profile
-
-    @staticmethod
-    @sync_to_async
     def get_users_on_event(event_id):
         event = Event.objects.filter(id=event_id).first()
         return list(event.user_set.all())
@@ -352,6 +342,13 @@ class DatabaseHandler:
         schedule.end_time = end_time_obj
         schedule.save(update_fields=['start_time', 'end_time'])
         return True
+    
+    @staticmethod
+    @sync_to_async
+    def get_next_profile_for_matching(user_id: int, event_id: int):
+        return NetworkingProfile.objects.filter(
+            event_id=event_id
+        ).exclude(user_id=user_id).first()
 
 
 db = DatabaseHandler()
