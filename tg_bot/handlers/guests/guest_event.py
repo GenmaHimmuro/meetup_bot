@@ -12,7 +12,7 @@ guest_router_event = Router()
 @guest_router_event.message(F.text == "📋 События")
 @check_role('guest')
 async def show_events(message: Message):
-    event = await db.get_event_by_id()
+    event = await db.get_active_events()
     non_active_events = await db.get_non_active_events()
     
     if not event:
