@@ -12,7 +12,7 @@ guest_router_event = Router()
 @guest_router_event.message(F.text == "📋 События")
 @check_role('guest')
 async def show_events(message: Message):
-    event = await db.get_active_event()
+    active_event = await db.get_active_event()
     non_active_events = await db.get_non_active_events()
     
     if not event:
@@ -20,10 +20,10 @@ async def show_events(message: Message):
         return
     
     text = "📋 Сегодня:\n\n"
-    text += f"{event.title}\n"
-    text += f"{event.date.strftime('%d.%m.%Y %H:%M')}\n"
-    text += f"{event.location}\n"
-    text += f"{event.description}\n\n"
+    text += f"{active_event.title}\n"
+    text += f"{active_event.date.strftime('%d.%m.%Y %H:%M')}\n"
+    text += f"{active_event.location}\n"
+    text += f"{active_event.description}\n\n"
 
     if not non_active_events:
         await message.answer("Предстоящих мероприятий пока нет")
