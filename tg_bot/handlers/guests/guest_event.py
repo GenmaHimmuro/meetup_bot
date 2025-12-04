@@ -15,7 +15,7 @@ async def show_events(message: Message):
     active_event = await db.get_active_event()
     non_active_events = await db.get_non_active_events()
     
-    if not event:
+    if not active_event:
         await message.answer("На данный момент нет активных мероприятий")
         return
     
