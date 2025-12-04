@@ -44,7 +44,7 @@ async def show_events(message: Message):
 async def event_detail(callback: CallbackQuery):
     event_id = int(callback.data.split("_")[1])
     
-    event = await db.get_event_by_id()
+    event = await db.get_event_by_id(event_id)
     is_registered = await db.is_user_on_event(callback.from_user.id, event_id)
     reply_markup = await get_event_action_keyboard(event_id, is_registered)
     
