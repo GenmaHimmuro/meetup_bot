@@ -64,6 +64,11 @@ class DatabaseHandler:
     
     @staticmethod
     @sync_to_async
+    def get_active_event():
+        return Event.objects.filter(is_active=True).order_by('-date')
+    
+    @staticmethod
+    @sync_to_async
     def get_non_active_events():
         return list(Event.objects.filter(is_active=False).order_by('-date'))
 
