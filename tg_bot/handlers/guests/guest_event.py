@@ -89,14 +89,12 @@ async def leave_event(callback: CallbackQuery):
 @guest_router_event.callback_query(F.data == "back_to_events")
 @check_role('guest')
 async def back_to_events(callback: CallbackQuery):
-    events = await db.get_active_events()
+    event = await db.get_active_event()
     
-    text = "Активные мероприятия:\n"
-    
-    for event in events:
-        text += f"{event.title}\n"
-        text += f"{event.date.strftime('%d.%m.%Y %H:%M')}\n"
-        text += "Чтобы записаться на предстоящее мероприятие, нажмите кнопку ниже\n"
+    text = "Активное мероприятие:\n"
+    text += f"{event.title}\n"
+    text += f"{event.date.strftime('%d.%m.%Y %H:%M')}\n"
+    text += "Чтобы записаться на предстоящее мероприятие, нажмите кнопку ниже\n"
 
     non_active_events = await db.get_non_active_events()
     reply_markup = await get_events_keyboard(non_active_events)
