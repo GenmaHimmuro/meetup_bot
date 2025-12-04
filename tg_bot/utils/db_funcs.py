@@ -65,7 +65,7 @@ class DatabaseHandler:
     @staticmethod
     @sync_to_async
     def get_active_event():
-        return Event.objects.filter(is_active=True).order_by('-date')
+        return Event.objects.filter(is_active=True).order_by('-date').first()
     
     @staticmethod
     @sync_to_async
